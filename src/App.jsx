@@ -7,7 +7,7 @@ function App() {
 	async function getData() {
 		try {
 			const response = await axios.get(
-				'https://jsonplaceholder.typicode.com/todos'
+				'https://task-dev-kom.vercel.app/api/all-user'
 			);
 
 			setData(response.data);
