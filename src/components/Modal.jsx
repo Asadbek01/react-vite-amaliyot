@@ -32,17 +32,16 @@ function ModalInput() {
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	}	
 
-	return (
+	return (  
 		<>
-			<Button variant='primary' onClick={handleShow}>
-				Launch demo modal
-			</Button>
+		
+		<Button variant="outline-success" onClick={handleShow}>Add-new user</Button>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Modal heading</Modal.Title>
+					<Modal.Title>Fill In The Information</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Form>
@@ -73,9 +72,8 @@ function ModalInput() {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant='primary' onClick={handleClose}>
-						Submit
-					</Button>
+					
+					<Button  onClick={handleClose} variant="outline-primary">Submit</Button>
 				</Modal.Footer>
 			</Modal>
 		</>

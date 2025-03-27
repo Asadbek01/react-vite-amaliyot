@@ -1,11 +1,15 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+import MyNavbar from './navbar';
+
 function CardComp({ data }) {
 	return (
 		<>
-
-			<div className='container d-flex flex-wrap gap-3'>
+		<MyNavbar  />
+		
+	
+			<div className='container d-flex flex-wrap gap-5'>
 				{data.map(val => {
 					console.log(val);
 
@@ -21,7 +25,7 @@ function CardComp({ data }) {
 									<Card.Text>
 										{val.lastName}
 									</Card.Text>
-									<Button variant='primary'>Go somewhere</Button>
+      								<Button variant="outline-secondary">Editing</Button>
 								</Card.Body>
 							</Card>
 						</>

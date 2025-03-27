@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import CardComp from './components/cardComp';
 import axios from 'axios';
-import Header from './components/header';
 
 function App() {
 	const [data, setData] = useState([]);
@@ -24,7 +23,6 @@ function App() {
 
 	return (
 		<>
-			<Header />
 			<CardComp data={data} />
 		</>
 	);
