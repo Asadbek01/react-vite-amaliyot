@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import ModalInput from './Modal';
 import MyNavbar from '../components/MyNavbar';
 
 function CardComp({ data }) {
