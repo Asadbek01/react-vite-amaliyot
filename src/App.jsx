@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CardComp from './components/cardComp';
 import axios from 'axios';
+import Navbar from './components/navbar';
 
 function App() {
 	const [data, setData] = useState([]);
