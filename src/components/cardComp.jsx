@@ -1,22 +1,18 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ModalInput from './Modal';
-import { MyNavbar } from 'react-bootstrap';
+import MyNavbar from '../components/MyNavbar';
 
 function CardComp({ data }) {
-	console.log(CardComp);
-	
 	return (
 		<>
-		<MyNavbar />
-			<ModalInput />
+			<MyNavbar />
+
 			<div className='container d-flex flex-wrap gap-3'>
 				{data.map(val => {
-					console.log(val);
-
 					return (
-						<>
-							<Card key={val.key || index}style={{ width: '18rem' }}>
+						<div key={val._id}>
+							<Card style={{ width: '18rem' }}>
 								<Card.Img
 									variant='top'
 									src='https://mdbootstrap.com/img/Photos/Others/water-lily.jpg'
@@ -30,7 +26,7 @@ function CardComp({ data }) {
 									<Button variant='primary'>Go somewhere</Button>
 								</Card.Body>
 							</Card>
-						</>
+						</div>
 					);
 				})}
 			</div>
