@@ -1,34 +1,40 @@
+// import axios from 'axios';
 import axios from 'axios';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function ModalInput() {
+function EditModal({ userId, users }) {
 	const [show, setShow] = useState(false);
 
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastname] = useState('');
 	const [email, setEmail] = useState('');
 
-	const handleClose = () => {
-		setShow(false);
+	const handleShow = () => {
+		setShow(true);
+		// console.log(users);
+		// console.log(userId);
 
-		const data = { firstName, lastName, email };
-		postData(data);
+		let user = users.find(val => val._id === userId);
+		setFirstName(user.firstName);
+		setLastname(user.lastName);
+		setEmail(user.email);
+		// setShow(true);
 	};
 
-	const handleShow = () => setShow(true);
-
-	async function postData(data) {
-		console.log(data);
-
+	async function Editdata() {
 		try {
-			const response = await axios.post(
-				'https://task-dev-kom.vercel.app/api/add-user',
+			const data = { firstName, lastName, email };
+			console.log(data);
+			const response = await axios.put(
+				`https://task-dev-kom.vercel.app/api/update-user/${userId}`,
 				data
 			);
-			console.log(response);
+			if (response.status == 200) {
+				setShow(false);
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -37,10 +43,10 @@ function ModalInput() {
 	return (
 		<>
 			<Button variant='outline-success' onClick={handleShow}>
-				Add-new user
+				Edit
 			</Button>
 
-			<Modal show={show} onHide={handleClose}>
+			<Modal show={show} onHide={() => setShow(false)}>
 				<Modal.Header closeButton>
 					<Modal.Title>Fill In The Information</Modal.Title>
 				</Modal.Header>
@@ -49,16 +55,18 @@ function ModalInput() {
 						<Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
 							<Form.Label>First Name </Form.Label>
 							<Form.Control
-								type='email'
+								type='text'
 								autoFocus
+								value={firstName}
 								onChange={e => setFirstName(e.target.value)}
 							/>
 						</Form.Group>
 						<Form.Group className='mb-3' controlId='exampleForm.ControlInput1'>
 							<Form.Label>Last Name</Form.Label>
 							<Form.Control
-								type='email'
+								type='text'
 								autoFocus
+								value={lastName}
 								onChange={e => setLastname(e.target.value)}
 							/>
 						</Form.Group>
@@ -67,14 +75,15 @@ function ModalInput() {
 							<Form.Control
 								type='email'
 								autoFocus
+								value={email}
 								onChange={e => setEmail(e.target.value)}
 							/>
 						</Form.Group>
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button onClick={handleClose} variant='outline-primary'>
-						Submit
+					<Button onClick={Editdata} variant='outline-primary'>
+						Update
 					</Button>
 				</Modal.Footer>
 			</Modal>
@@ -82,4 +91,4 @@ function ModalInput() {
 	);
 }
 
-export default ModalInput;
+export default EditModal;
